@@ -1,19 +1,24 @@
 // require('dotenv').config({path: './env'})
 
 import dotenv from "dotenv"
-import express from "express";
+// import express from "express";
 import connectDB from "./db/index.js";
-const app = express()
+import {app} from "./app.js"
+
+// const app = express()
 
 
 //dotenv isliye use krte jab mai apna app run kru to sari sagah environmental varibale available ho jaye.
 dotenv.config({
-    path: './env'
+    path: './.env'
 })
 
-const port = process.env.PORT
+ const port = process.env.PORT || 4000;
+
+//  console.log(port);
 
 connectDB()
+
 .then(()=>{
   app.listen(port,()=>{
     console.log(`Server is running at ${port}`);
