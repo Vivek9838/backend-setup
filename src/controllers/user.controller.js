@@ -31,18 +31,26 @@ const registerUser = asyncHandler (asyncHandler(async (req,res) => {
 
     }
          
-   const exitsUser = User.findOne({
+   const exitsUser =await User.findOne({
         $or:[{username},{email}]
     })
         
     if(exitsUser){
         throw new ApiError(409,"User with email and username already exits")
     }
-     
+    
+    // console.log(req.files);
+    
 
     //yaha multer ne files ka accesss deta hai
    const avatarLocalPath =  req.files?.avatar[0]?.path;
-   const coverImageLocalPath = req.files?.coverImage[0]?.path;
+//    const coverImageLocalPath = req.files?.coverImage[0]?.path;
+ 
+   let coverImageLocalPath;
+   if(req.files && Array.isArray(req.files.coverImage) && req.files.coverImage.length > 0){
+    coverImageLocalPath = req.files.coverImage[0].path 
+   }
+
 
    if(!avatarLocalPath){
     throw new ApiError(400,"Avatar file is required")
@@ -54,7 +62,6 @@ const registerUser = asyncHandler (asyncHandler(async (req,res) => {
       if(!avatar){
         throw new ApiError(400,"Avatar file is required")
       }
-
 
      const user = await User.create({
         fullname,
