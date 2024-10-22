@@ -13,10 +13,10 @@ app.use(cors({
 
 
 //ye mai jb form fill kiya tb data liya
-app.use(express.json({
-    limit:"16kb"
-}))
-
+// app.use(express.json({
+//     limit:"16kb"
+// }))
+app.use(express.json());
 //ye jb url se data aayega tb liya jayega
 app.use(express.urlencoded(
     {extended:true,limit:"16kb"}))

@@ -7,20 +7,3 @@ const asyncHandler = (requestHandler) =>{
 
 export {asyncHandler}
 
-// const asyncHandler=()=>{}
-// const asyncHandler =(func)=>()=>{}
-
-
-//aise bhi kr sakte hai 
-    
-// const asyncHandler = (fn) = async (req,res,next) => {
-//   try {
-//       await fn(req,res,next)
-//   } catch (error) {
-//      res.status(err.code || 500).json({
-//         success:false,
-//         message:err.message
-//      })
-     
-//   }
-// }
